@@ -11,10 +11,6 @@ public class PhoneBookRecord {
         this.phone = phone;
     }
 
-    public PhoneBookRecord() {
-
-    }
-
     public  void setName(String name) {
         this.name = name;
     }

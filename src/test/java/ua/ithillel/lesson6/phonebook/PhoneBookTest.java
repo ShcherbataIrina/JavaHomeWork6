@@ -1,21 +1,27 @@
 package ua.ithillel.lesson6.phonebook;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PhoneBookTest {
-    private List<PhoneBookRecord> record = new ArrayList<>();
+    private List<PhoneBookRecord> record;
+
+    @BeforeEach
+    void setup() {
+        record = new ArrayList<>();
+    }
 
     @Test
     void shouldAddRecord() {
         var allen = new PhoneBookRecord("Allen", "0693789548");
+        var result = record.add(allen);
 
-
-        assertArrayEquals(record.add(allen), new PhoneBookRecord("Allen", "0693789548"));
+        assertEquals(record.getAll(), new PhoneBookRecord("Allen", "0693789548"));
 
     }
 
@@ -32,11 +38,11 @@ class PhoneBookTest {
         record.add(sveta);
 
 
-        assertArrayEquals(record.find(record,"Allen"), new PhoneBookRecord("Allen", "0693789548"));
+        assertEquals(record.find("Allen"), new PhoneBookRecord("Allen", "0693789548"));
     }
 
     @Test
-    void shouldFind() {
+    void shouldFindAll() {
         var allen = new PhoneBookRecord("Allen", "0693789548");
         var ivan1 = new PhoneBookRecord("Ivan", "06598718324");
         var ivan2 = new PhoneBookRecord("Ivan", "0669587431");
@@ -53,6 +59,6 @@ class PhoneBookTest {
         result.add(ivan1);
         result.add(ivan2);
 
-        assertArrayEquals(record.findAll(record,"Ivan"), result);
+        assertEquals(record.findAll("Ivan"), result.getAll());
     }
 }

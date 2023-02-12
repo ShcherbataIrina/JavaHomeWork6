@@ -38,5 +38,12 @@ public class PhoneBook {
 
     }
 
+    public List<PhoneBookRecord> getAll(){
+        for(int i =0; i < records.size(); i++) {
+            System.out.println(records.get(i));
+        }
+        return records;
+    }
+
 
 }
