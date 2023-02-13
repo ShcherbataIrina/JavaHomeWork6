@@ -9,19 +9,20 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PhoneBookTest {
-    private List<PhoneBookRecord> record;
+
+    private PhoneBook phoneBook;
 
     @BeforeEach
     void setup() {
-        record = new ArrayList<>();
+        phoneBook = new PhoneBook();
     }
 
     @Test
     void shouldAddRecord() {
         var allen = new PhoneBookRecord("Allen", "0693789548");
-        var result = record.add(allen);
+        phoneBook.add(allen);
 
-        assertEquals(record.getAll(), new PhoneBookRecord("Allen", "0693789548"));
+        assertEquals(phoneBook.getAll(), List.of(new PhoneBookRecord("Allen", "0693789548")) );
 
     }
 
@@ -32,13 +33,13 @@ class PhoneBookTest {
         var olena = new PhoneBookRecord("Olena", "0978543621");
         var sveta = new PhoneBookRecord("Sveta", "0996748459");
 
-        record.add(allen);
-        record.add(ivan);
-        record.add(olena);
-        record.add(sveta);
+        phoneBook.add(allen);
+        phoneBook.add(ivan);
+        phoneBook.add(olena);
+        phoneBook.add(sveta);
 
 
-        assertEquals(record.find("Allen"), new PhoneBookRecord("Allen", "0693789548"));
+        assertEquals(phoneBook.find("Allen"), new PhoneBookRecord("Allen", "0693789548"));
     }
 
     @Test
@@ -49,16 +50,16 @@ class PhoneBookTest {
         var olena = new PhoneBookRecord("Olena", "0978543621");
         var sveta = new PhoneBookRecord("Sveta", "0996748459");
 
-        record.add(allen);
-        record.add(ivan1);
-        record.add(ivan2);
-        record.add(olena);
-        record.add(sveta);
+        phoneBook.add(allen);
+        phoneBook.add(ivan1);
+        phoneBook.add(ivan2);
+        phoneBook.add(olena);
+        phoneBook.add(sveta);
 
-        List<PhoneBookRecord> result = new ArrayList<>();
-        result.add(ivan1);
-        result.add(ivan2);
+        List<PhoneBookRecord> expected = new ArrayList<>();
+        expected.add(ivan1);
+        expected.add(ivan2);
 
-        assertEquals(record.findAll("Ivan"), result.getAll());
+        assertEquals(phoneBook.findAll("Ivan"), expected);
     }
 }

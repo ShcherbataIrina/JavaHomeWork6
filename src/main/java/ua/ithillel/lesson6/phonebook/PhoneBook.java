@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PhoneBook {
-    private  List<PhoneBookRecord> records = new ArrayList<>();
+    private List<PhoneBookRecord> records = new ArrayList<>();
 
     public void add(PhoneBookRecord newRecord) {
 
@@ -12,36 +12,32 @@ public class PhoneBook {
 
     }
 
-    public PhoneBookRecord find(List<PhoneBookRecord> recordList, String name) {
-
-        int index = recordList.indexOf(name);
-        if (index != -1) {
-            return recordList.get(index);
-        } else return null;
+    public PhoneBookRecord find(String name) {
+        for (PhoneBookRecord record : records) {
+            if (name.equals(record.getName())) {
+                return record;
+            }
+        }
+        return null;
 
     }
 
-    public List<PhoneBookRecord> findAll(List<PhoneBookRecord> recordList, String name) {
-        var resultRecordList = new ArrayList<PhoneBookRecord>();
+    public List<PhoneBookRecord> findAll(String name) {
+        var result = new ArrayList<PhoneBookRecord>();
 
 
-        for (int i = 0; i < recordList.size(); i++) {
-
-            if(recordList.get(i).equals(name)){
-                resultRecordList.add(recordList.get(i));
+        for (PhoneBookRecord record : records) {
+            if (name.equals(record.getName())) {
+                result.add(record);
             }
 
         }
-        if (!resultRecordList.isEmpty()) {
-            return resultRecordList;
-        } else return null;
+        return result;
 
     }
 
-    public List<PhoneBookRecord> getAll(){
-        for(int i =0; i < records.size(); i++) {
-            System.out.println(records.get(i));
-        }
+    public List<PhoneBookRecord> getAll() {
+        records.forEach(System.out::println);
         return records;
     }
 
